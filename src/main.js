@@ -43,7 +43,6 @@ if (!reduce) {
    Pannello accessibilita
    ============================================================ */
 
-const KEY = "gp-a11y";
 const TOGGLES = ["big", "spaced", "calm", "still"];
 
 const panel = document.getElementById("a11y-panel");
@@ -68,22 +67,6 @@ function loadFont(name) {
   if (name === "default" || loaded.has(name) || !FONT_LOADERS[name]) return;
   loaded.add(name);
   FONT_LOADERS[name]().catch(() => loaded.delete(name));
-}
-
-function read() {
-  try {
-    return JSON.parse(localStorage.getItem(KEY)) || {};
-  } catch {
-    return {};
-  }
-}
-
-function write(prefs) {
-  try {
-    localStorage.setItem(KEY, JSON.stringify(prefs));
-  } catch {
-    // Modalita privata o storage pieno: le preferenze valgono per questa visita.
-  }
 }
 
 function apply(prefs) {
@@ -112,12 +95,13 @@ function sync(prefs) {
   }
 }
 
-let prefs = read();
+// Le preferenze non vengono salvate: a ogni caricamento la pagina riparte
+// dal predefinito. Scelta esplicita, non una dimenticanza.
+let prefs = {};
 apply(prefs);
 sync(prefs);
 
 function save() {
-  write(prefs);
   apply(prefs);
 }
 

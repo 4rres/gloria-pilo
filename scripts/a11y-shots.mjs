@@ -47,7 +47,7 @@ await shot("05-tutto-attivo", 1280, 860, async (p) => {
 await shot("06-mobile-chiuso", 390, 844);
 await shot("07-mobile-aperto", 390, 844, openPanel);
 
-// Verifica persistenza + reset
+// Le preferenze NON persistono: un reload deve riportare tutto al predefinito.
 const page = await browser.newPage({ viewport: { width: 1280, height: 860 } });
 await page.goto("http://localhost:5173/", { waitUntil: "networkidle" });
 await page.click("#a11y-btn");
@@ -56,7 +56,7 @@ await page.click('.a11y-switch:has([data-a11y-toggle="big"])');
 await page.waitForTimeout(300);
 await page.reload({ waitUntil: "networkidle" });
 await page.waitForTimeout(400);
-console.log("dopo reload -> font:", await page.getAttribute("html", "data-font"), "| big:", await page.getAttribute("html", "data-big"));
+console.log("dopo reload (deve essere default/null) -> font:", await page.getAttribute("html", "data-font"), "| big:", await page.getAttribute("html", "data-big"));
 await page.click("#a11y-btn");
 await page.click("#a11y-reset");
 await page.waitForTimeout(300);
