@@ -297,7 +297,8 @@ h3 {
 /* Hero */
 .hero {
   position: relative;
-  min-height: 100dvh;
+  min-height: 100vh;
+  min-height: 100svh;
   overflow: hidden;
   display: grid;
   place-items: center;
@@ -683,7 +684,8 @@ section[id] {
 /* Close */
 .close {
   position: relative;
-  min-height: 88dvh;
+  min-height: 88vh;
+  min-height: 88svh;
   overflow: hidden;
   display: grid;
   place-items: center;
@@ -820,7 +822,20 @@ section[id] {
 }
 
 @media (max-width: 767px) {
+  /* Sfondo fisso, grana in multiply e backdrop-filter costringono il browser
+     a ricomporre tutta la pagina a ogni frame di scroll: su mobile via. */
+  body {
+    background-attachment: scroll;
+  }
+
+  body::after {
+    display: none;
+  }
+
   .nav {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: color-mix(in srgb, var(--cream) 94%, var(--white));
     height: 56px;
     padding: 6px 7px 6px 16px;
   }
@@ -860,14 +875,24 @@ section[id] {
     font-size: 1.1rem;
   }
 
-  /* Keep edge wallpaper, drop pills that sit on the lockup */
-  .hero .fp:nth-child(3),
-  .hero .fp:nth-child(4),
-  .hero .fp:nth-child(5),
-  .hero .fp:nth-child(7),
-  .hero .fp:nth-child(8),
-  .close .fp:nth-child(5) {
+  /* Su mobile il contenuto occupa quasi tutta la larghezza: tengo solo
+     due pillole, spostate ai lati della foto dove c'e' spazio libero.
+     Le posizioni originali sono inline, quindi qui serve !important. */
+  .fp.fp-m-off,
+  .close .fp {
     display: none;
+  }
+
+  .hero .fp-m-a {
+    top: 31% !important;
+    left: 3% !important;
+    right: auto !important;
+  }
+
+  .hero .fp-m-b {
+    top: 42% !important;
+    right: 3% !important;
+    left: auto !important;
   }
 
   .orbit {
