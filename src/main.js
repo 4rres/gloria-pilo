@@ -4,6 +4,9 @@ import "@fontsource-variable/space-grotesk/wght.css";
 import "./styles.css";
 import { WHATSAPP_NUMBER, WHATSAPP_TEXT } from "./config.js";
 
+// I reveal partono solo se il JS gira: senza, il contenuto resta visibile.
+document.documentElement.classList.add("js");
+
 const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
 
 for (const el of document.querySelectorAll("[data-wa]")) {
