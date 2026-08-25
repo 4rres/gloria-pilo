@@ -28,7 +28,25 @@
 
     <header class="nav">
       <a class="wordmark" href="#inizio">Gloria Pilo</a>
-      <a class="cta cta-nav" data-wa href="https://wa.me/393488332776?text=Ciao%20Gloria%2C%20ti%20scrivo%20per%20mio%20figlio.%20Possiamo%20sentirci%20per%20la%20chiamata%20conoscitiva%3F">Scrivimi su WhatsApp</a>
+      <div class="nav-end">
+        <button
+          class="a11y-btn"
+          id="a11y-btn"
+          type="button"
+          aria-label="Accessibilita"
+          aria-expanded="false"
+          aria-controls="a11y-panel"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="4.2" r="1.9" />
+            <path d="M4.4 7.6c2.4.9 4.9 1.4 7.6 1.4s5.2-.5 7.6-1.4" />
+            <path d="M12 9v5.2" />
+            <path d="M12 14.2 9.4 21" />
+            <path d="M12 14.2 14.6 21" />
+          </svg>
+        </button>
+        <a class="cta cta-nav" data-wa href="https://wa.me/393488332776?text=Ciao%20Gloria%2C%20ti%20scrivo%20per%20mio%20figlio.%20Possiamo%20sentirci%20per%20la%20chiamata%20conoscitiva%3F">Scrivimi su WhatsApp</a>
+      </div>
     </header>
 
     <main>
@@ -215,6 +233,96 @@
         Psicologa iscritta all'Albo. Il tutoraggio è un servizio educativo e non sostituisce la diagnosi, la certificazione o la psicoterapia.
       </p>
     </footer>
+
+    <div class="a11y-scrim" id="a11y-scrim" hidden></div>
+
+    <div
+      class="a11y-panel"
+      id="a11y-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="a11y-title"
+      hidden
+    >
+      <div class="a11y-head">
+        <div>
+          <h2 id="a11y-title">Accessibilità</h2>
+          <p class="a11y-sub">Preferenze di lettura. Restano salvate su questo dispositivo.</p>
+        </div>
+        <button class="a11y-close" id="a11y-close" type="button" aria-label="Chiudi">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+      </div>
+
+      <fieldset class="a11y-group">
+        <legend>Carattere</legend>
+        <label class="a11y-radio">
+          <input type="radio" name="a11y-font" value="default" checked />
+          <span class="a11y-mark" aria-hidden="true"></span>
+          <span class="a11y-text">
+            <span class="a11y-label">Predefinito</span>
+            <span class="a11y-note">Il carattere originale del sito.</span>
+          </span>
+        </label>
+        <label class="a11y-radio">
+          <input type="radio" name="a11y-font" value="hyper" />
+          <span class="a11y-mark" aria-hidden="true"></span>
+          <span class="a11y-text">
+            <span class="a11y-label">Alta leggibilità</span>
+            <span class="a11y-note">Atkinson Hyperlegible: distingue le lettere che si confondono.</span>
+          </span>
+        </label>
+        <label class="a11y-radio">
+          <input type="radio" name="a11y-font" value="dyslexic" />
+          <span class="a11y-mark" aria-hidden="true"></span>
+          <span class="a11y-text">
+            <span class="a11y-label">Font per dislessia</span>
+            <span class="a11y-note">OpenDyslexic, con le lettere appesantite in basso.</span>
+          </span>
+        </label>
+      </fieldset>
+
+      <fieldset class="a11y-group">
+        <legend>Lettura</legend>
+        <label class="a11y-switch">
+          <input type="checkbox" data-a11y-toggle="big" />
+          <span class="a11y-track" aria-hidden="true"><span class="a11y-knob"></span></span>
+          <span class="a11y-text">
+            <span class="a11y-label">Testo più grande</span>
+          </span>
+        </label>
+        <label class="a11y-switch">
+          <input type="checkbox" data-a11y-toggle="spaced" />
+          <span class="a11y-track" aria-hidden="true"><span class="a11y-knob"></span></span>
+          <span class="a11y-text">
+            <span class="a11y-label">Più aria tra le righe</span>
+          </span>
+        </label>
+        <label class="a11y-switch">
+          <input type="checkbox" data-a11y-toggle="calm" />
+          <span class="a11y-track" aria-hidden="true"><span class="a11y-knob"></span></span>
+          <span class="a11y-text">
+            <span class="a11y-label">Pagina calma</span>
+            <span class="a11y-note">Toglie sfumature, grana e riquadri colorati.</span>
+          </span>
+        </label>
+        <label class="a11y-switch">
+          <input type="checkbox" data-a11y-toggle="still" />
+          <span class="a11y-track" aria-hidden="true"><span class="a11y-knob"></span></span>
+          <span class="a11y-text">
+            <span class="a11y-label">Meno movimento</span>
+          </span>
+        </label>
+      </fieldset>
+
+      <button class="a11y-reset" id="a11y-reset" type="button">Ripristina</button>
+
+      <p class="a11y-foot">
+        Questo sito parla di DSA. Sarebbe strano se poi fosse difficile da leggere.
+      </p>
+    </div>
 
     <script type="application/ld+json">
       {

@@ -933,3 +933,480 @@ section[id] {
     -webkit-backdrop-filter: none;
   }
 }
+
+/* ============================================================
+   Accessibilita: bottone in nav, pannello, preferenze di lettura
+   ============================================================ */
+
+.nav-end {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.a11y-btn {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 2px solid var(--outline);
+  border-radius: 9999px;
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--shadow);
+  transition:
+    transform 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    background 0.35s var(--ease);
+}
+
+.a11y-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.a11y-btn svg circle {
+  fill: currentColor;
+  stroke: none;
+}
+
+.a11y-btn:hover {
+  background: var(--sky);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.a11y-btn[aria-expanded="true"] {
+  background: var(--sky);
+}
+
+/* --- Pannello --- */
+
+.a11y-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 78;
+  background: rgba(26, 26, 26, 0.34);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: a11y-fade 0.25s var(--ease);
+}
+
+.a11y-panel {
+  position: fixed;
+  z-index: 80;
+  top: 86px;
+  right: 24px;
+  width: min(360px, calc(100vw - 48px));
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1.35rem 1.35rem 1.15rem;
+  background: var(--cream);
+  border: 2px solid var(--outline);
+  border-radius: 26px;
+  box-shadow: 8px 8px 0 var(--shadow);
+  animation: a11y-pop 0.3s var(--ease);
+}
+
+.a11y-panel[hidden],
+.a11y-scrim[hidden] {
+  display: none;
+}
+
+@keyframes a11y-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes a11y-pop {
+  from {
+    opacity: 0;
+    translate: 0 -10px;
+    scale: 0.97;
+  }
+}
+
+.a11y-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 1.1rem;
+}
+
+.a11y-panel h2 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.a11y-sub {
+  margin-top: 0.3rem;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: 26ch;
+}
+
+.a11y-close {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 2px solid var(--outline);
+  border-radius: 9999px;
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.a11y-close svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.a11y-close:hover {
+  background: var(--coral);
+  color: var(--white);
+}
+
+.a11y-group {
+  border: 0;
+  margin-bottom: 1.15rem;
+}
+
+.a11y-group legend {
+  padding: 0 0 0.55rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+.a11y-radio,
+.a11y-switch {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 0.5rem 0.55rem;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+
+.a11y-radio:hover,
+.a11y-switch:hover {
+  background: color-mix(in srgb, var(--sky) 22%, transparent);
+}
+
+.a11y-radio input,
+.a11y-switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.a11y-text {
+  display: block;
+  min-width: 0;
+}
+
+.a11y-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.a11y-note {
+  display: block;
+  margin-top: 0.18rem;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* Radio */
+.a11y-mark {
+  flex: none;
+  width: 19px;
+  height: 19px;
+  margin-top: 2px;
+  border: 2px solid var(--outline);
+  border-radius: 9999px;
+  background: var(--white);
+  display: grid;
+  place-items: center;
+}
+
+.a11y-mark::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background: var(--outline);
+  scale: 0;
+  transition: scale 0.22s var(--ease);
+}
+
+.a11y-radio input:checked + .a11y-mark {
+  background: var(--lime);
+}
+
+.a11y-radio input:checked + .a11y-mark::after {
+  scale: 1;
+}
+
+/* Switch */
+.a11y-track {
+  flex: none;
+  width: 42px;
+  height: 24px;
+  margin-top: 1px;
+  padding: 2px;
+  border: 2px solid var(--outline);
+  border-radius: 9999px;
+  background: var(--white);
+  display: flex;
+  transition: background 0.25s var(--ease);
+}
+
+.a11y-knob {
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: var(--outline);
+  transition: translate 0.25s var(--ease);
+}
+
+.a11y-switch input:checked + .a11y-track {
+  background: var(--lime);
+}
+
+.a11y-switch input:checked + .a11y-track .a11y-knob {
+  translate: 18px 0;
+}
+
+.a11y-radio input:focus-visible + .a11y-mark,
+.a11y-switch input:focus-visible + .a11y-track {
+  outline: 2px solid var(--outline);
+  outline-offset: 3px;
+}
+
+.a11y-reset {
+  width: 100%;
+  padding: 0.6rem;
+  border: 2px solid var(--outline);
+  border-radius: 9999px;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  cursor: pointer;
+  transition: background 0.25s var(--ease);
+}
+
+.a11y-reset:hover {
+  background: var(--yellow);
+}
+
+.a11y-foot {
+  margin-top: 0.95rem;
+  padding-top: 0.85rem;
+  border-top: 2px dotted color-mix(in srgb, var(--outline) 30%, transparent);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  .a11y-btn {
+    width: 38px;
+    height: 38px;
+    box-shadow: 3px 3px 0 var(--shadow);
+  }
+
+  .a11y-btn svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .nav-end {
+    gap: 7px;
+  }
+
+  /* Su mobile il pannello sale dal basso: il pollice ci arriva. */
+  .a11y-panel {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    max-height: 82vh;
+    border-radius: 26px 26px 0 0;
+    border-bottom: 0;
+    padding-bottom: calc(1.15rem + env(safe-area-inset-bottom));
+    animation: a11y-sheet 0.32s var(--ease);
+  }
+
+  @keyframes a11y-sheet {
+    from {
+      translate: 0 100%;
+    }
+  }
+}
+
+/* ============================================================
+   Preferenze applicate: attributi su <html>
+   ============================================================ */
+
+/* --- Carattere --- */
+
+:root[data-font="hyper"] {
+  --sans: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --serif: "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+
+:root[data-font="dyslexic"] {
+  --sans: "OpenDyslexic", system-ui, sans-serif;
+  --serif: "OpenDyslexic", system-ui, sans-serif;
+}
+
+/* I corsivi sono la cosa peggiore in lettura difficoltosa: via del tutto.
+   Vale anche per i titoli display, che perdono il Bodoni sopra. */
+:root[data-font]:not([data-font="default"]) em,
+:root[data-font]:not([data-font="default"]) i {
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* OpenDyslexic ha un'altezza-x molto grande e una gamba lunga: le crenature
+   negative pensate per il Bodoni qui incollano le lettere. Scalo con un
+   fattore, non con font-size, che azzererebbe i clamp() dei titoli. */
+:root[data-font="dyslexic"] h1,
+:root[data-font="dyslexic"] h2,
+:root[data-font="dyslexic"] h3 {
+  letter-spacing: 0;
+  scale: 0.88;
+  transform-origin: center top;
+}
+
+:root[data-font="dyslexic"] .wordmark {
+  font-size: 1.05rem;
+  letter-spacing: 0;
+}
+
+/* --- Testo piu grande --- */
+
+:root[data-big="on"] {
+  font-size: 118.75%;
+}
+
+:root[data-big="on"] .a11y-panel {
+  font-size: 0.88rem;
+}
+
+/* --- Piu aria tra le righe --- */
+
+:root[data-spaced="on"] body {
+  line-height: 1.85;
+  letter-spacing: 0.035em;
+  word-spacing: 0.14em;
+}
+
+:root[data-spaced="on"] p,
+:root[data-spaced="on"] li {
+  max-width: 62ch;
+}
+
+:root[data-spaced="on"] h1,
+:root[data-spaced="on"] h2,
+:root[data-spaced="on"] h3 {
+  line-height: 1.32;
+  word-spacing: normal;
+}
+
+:root[data-spaced="on"] .a11y-panel {
+  line-height: 1.5;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+/* --- Pagina calma --- */
+
+:root[data-calm="on"] body {
+  background-image: none;
+}
+
+:root[data-calm="on"] body::after {
+  display: none;
+}
+
+:root[data-calm="on"] .fp,
+:root[data-calm="on"] .orbit {
+  display: none !important;
+}
+
+:root[data-calm="on"] .nav {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  background: var(--white);
+}
+
+/* --- Meno movimento --- */
+
+:root[data-still="on"] {
+  scroll-behavior: auto;
+}
+
+:root[data-still="on"] *,
+:root[data-still="on"] *::before,
+:root[data-still="on"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+:root[data-still="on"] [data-reveal] {
+  opacity: 1 !important;
+  translate: none !important;
+}
+
+/* Il tutto-maiuscolo cancella la forma della parola, che e' l'appiglio su cui
+   si regge la lettura difficoltosa. Appena si accende un aiuto, torna il
+   minuscolo: il testo sorgente e' gia' scritto correttamente. */
+:root[data-spaced="on"] *:not(.a11y-panel *),
+:root[data-font="hyper"] *:not(.a11y-panel *),
+:root[data-font="dyslexic"] *:not(.a11y-panel *) {
+  text-transform: none;
+}
+
+:root[data-spaced="on"] .sub,
+:root[data-font="hyper"] .sub,
+:root[data-font="dyslexic"] .sub {
+  letter-spacing: 0.02em;
+}
