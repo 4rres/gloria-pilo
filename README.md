@@ -2,11 +2,11 @@
 
 Pagina unica per i tutoraggi DSA, dalle elementari alle superiori.
 
+Online: [https://gloriapilo.study](https://gloriapilo.study)
+
 ```bash
 npm install
 npm run dev
 ```
-
-Apre su [http://localhost:5173/](http://localhost:5173/).
 
 WhatsApp: `src/config.js`.
